@@ -4,10 +4,10 @@
 This is the "View" of the MVC world.
 """
 import os
-from Tkinter import *
-from tkFont import *
-from ttk import *
-import tkMessageBox
+from tkinter import *
+from tkinter.font import *
+from tkinter.ttk import *
+import tkinter.messagebox
 import webbrowser
 
 import coverage
@@ -380,14 +380,14 @@ class MainWindow(object):
                     total_coverage = totals.pc_covered
                     self.coverage_data['total_coverage'] = total_coverage
 
-                    coverage_text = u'%.1f%%' % total_coverage
+                    coverage_text = '%.1f%%' % total_coverage
 
                     # Update the text with up/down arrows to reflect change
                     if old_total_coverage is not None:
                         if total_coverage > old_total_coverage:
-                            coverage_text = coverage_text + u' ⬆'
+                            coverage_text = coverage_text + ' ⬆'
                         elif total_coverage < old_total_coverage:
-                            coverage_text = coverage_text + u' ⬇'
+                            coverage_text = coverage_text + ' ⬇'
 
                     self.coverage_total_summary.set(coverage_text)
 
@@ -411,12 +411,12 @@ class MainWindow(object):
 
                     loaded = True
                 else:
-                    retry = tkMessageBox.askretrycancel(
+                    retry = tkinter.messagebox.askretrycancel(
                         message="Couldn't find coverage data file. Have you generated coverage data? Is the .coverage in your current working directory",
                         title='No coverage data found'
                     )
-            except Exception, e:
-                retry = tkMessageBox.askretrycancel(
+            except Exception as e:
+                retry = tkinter.messagebox.askretrycancel(
                     message="Couldn't load coverage data -- data file may be corrupted (Error was: %s)" % e,
                     title='Problem loading coverage data'
                 )

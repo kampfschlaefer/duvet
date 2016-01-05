@@ -1,7 +1,7 @@
 '''
 This is the main entry point for the Duvet GUI.
 '''
-from Tkinter import *
+from tkinter import *
 import sys
 
 import argparse
@@ -13,7 +13,7 @@ from duvet.view import MainWindow
 def main():
     parser = argparse.ArgumentParser(
         description='A GUI tool to visualize coverage data.',
-        version=VERSION
+        epilog='Version %s' % VERSION,
     )
 
     # parser.add_argument(

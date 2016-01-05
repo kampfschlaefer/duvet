@@ -1,5 +1,5 @@
 import os.path
-from ttk import *
+from tkinter.ttk import *
 
 from tkreadonly import ReadOnlyCode
 
