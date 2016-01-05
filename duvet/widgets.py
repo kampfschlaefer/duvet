@@ -1,3 +1,9 @@
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
 import os.path
 from tkinter.ttk import *
 
@@ -47,8 +53,24 @@ class FileView(Treeview):
         self.tag_configure('non_code', foreground='gray')
 
         # Populate the file view
+        # if self.root:
+        #     os.path.walk(self.root, self._visitor, None)
         if self.root:
-            os.path.walk(self.root, self._visitor, None)
+            # prune = []
+            for root, dirs, files in os.walk(self.root):
+                self.insert_dirname(root)
+                for filename in files:
+                    name, ext = os.path.splitext(filename)
+                    if not (ext in ('.pyc',) or filename.startswith('.')):
+                        root, ext = os.path.splitext(filename)
+                        if ext == '.py':
+                            self.insert_filename(root, filename, ext)
+                        # else:
+                        #     prune.append(filename)
+                    # else:
+                    #     prune.append(filename)
+            # for filename in prune:
+            #     filesindir.remove(filename)
 
     def _visitor(self, data, dirname, filesindir):
         prune = []
